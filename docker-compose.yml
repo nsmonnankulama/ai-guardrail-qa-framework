@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: ./backend
+    container_name: guardrail_qa_backend
+    restart: always
+    env_file: .env
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./data/guardrail_qa.db}
+      - DB_BOOTSTRAP_ADMIN_URL=${DB_BOOTSTRAP_ADMIN_URL:-}
+      - AI_PROVIDER=${AI_PROVIDER}
+      - AI_MODEL=${AI_MODEL}
+      - AI_API_KEY=${AI_API_KEY}
+      - AI_BASE_URL=${AI_BASE_URL}
+    volumes:
+      - backend_data:/app/data
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: guardrail_qa_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  backend_data:
