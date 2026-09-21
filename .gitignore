@@ -1,4 +1,37 @@
-node_modules
-dist
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment & secrets
 .env
-*.local
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+venv/
+.venv/
+ENV/
+*.egg-info/
+
+# Node / frontend
+node_modules/
+dist/
+build/
+npm-debug.log*
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+backend/data/
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
